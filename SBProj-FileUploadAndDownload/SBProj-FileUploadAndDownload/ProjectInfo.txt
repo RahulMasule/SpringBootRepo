@@ -1,0 +1,56 @@
+Title: 
+	SBProj-FileUploadAndDownload
+
+Description :
+	This project is for to Upload and download file to local file system
+
+Module 1:
+	Description : to upload single file 
+	Url : http://localhost:8081/SBProj-FileUploadAndDownload/upload/singleFile
+	Inputs : In PostMan under body tab click the form-data checkbox
+		key(text/file)=file
+		value=choose the single file/image form local file system
+	Outputs :
+		{
+		    "fileName": "dhoni.jpg",
+		    "fileType": "image/jpeg",
+		    "url": "http://localhost:8081/SBProj-FileUploadAndDownload/download/dhoni.jpg"
+		}	
+		
+Module 2:
+	Description : to download file 
+	Url : http://localhost:8081/SBProj-FileUploadAndDownload/download/Rashmika2.jpg
+	Inputs : Hit request to postman
+	Outputs : Selected file will display here Rashmika2.jpg will display
+	
+Module 3:
+	Description : to upload Multiple files 
+	Url : http://localhost:8081/SBProj-FileUploadAndDownload/upload/multipleFiles
+	Inputs : In PostMan under body tab click the form-data checkbox
+		key(text/file)=files
+		value=choose the Multiple files/images form local file system
+	Outputs :
+		[
+		    {
+		        "fileName": "dhoni.jpg",
+		        "fileType": "image/jpeg",
+		        "url": "http://localhost:8081/SBProj-FileUploadAndDownload/download/dhoni.jpg"
+		    },
+		    {
+		        "fileName": "rashmika.jpg",
+		        "fileType": "image/jpeg",
+		        "url": "http://localhost:8081/SBProj-FileUploadAndDownload/download/rashmika.jpg"
+		    },
+		    {
+		        "fileName": "RONALDO.jpg",
+		        "fileType": "image/jpeg",
+		        "url": "http://localhost:8081/SBProj-FileUploadAndDownload/download/RONALDO.jpg"
+		    }
+		]
+	
+Module 4:
+	Description : to download files as Zip file 
+	Url : http://localhost:8081/SBProj-FileUploadAndDownload/downloadMultipleeIntoZip?fileName=dhoni.jpg&fileName=rashmika3.jpg
+	Inputs : Hit request to postman
+	Outputs : Selected file will downloaded as Zip file
+	
