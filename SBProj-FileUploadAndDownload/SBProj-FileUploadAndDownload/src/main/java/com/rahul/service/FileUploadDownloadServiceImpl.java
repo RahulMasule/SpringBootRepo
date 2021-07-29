@@ -1,12 +1,15 @@
 package com.rahul.service;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,5 +49,24 @@ public class FileUploadDownloadServiceImpl implements IFileUploadDownloadService
 		}
 		
 		return fileName;
+	}
+
+	@Override
+	public Resource downloadFileFromLocalFileSystem(String fileName) {
+		Resource resource=null;
+		Path filePath;
+		//locate destination file path
+		filePath=Paths.get(uploadFileLoc).toAbsolutePath().resolve(fileName);
+
+		try {
+			//fetch the actual file from fileSystem location
+			resource=new UrlResource(filePath.toUri());
+		} catch (MalformedURLException e) {
+			throw new RuntimeException("Failed to Read File",e);
+		}
+		if(resource.exists()&&resource.isReadable())
+			return resource;
+		else
+			throw new RuntimeException("File is not Exists or not readable");
 	}
 }
